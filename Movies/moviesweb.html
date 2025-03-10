@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies web</title>
+    <style>
+        * {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        header {
+            height: 80px;
+            background-color: #373b69;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        #name {
+            font-size: 40px;
+            font-weight: bolder;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(rgb(0, 255, 195), rgb(0, 0, 255));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        @media (max-width:500px) {
+            header {
+                height: 120px;
+            }
+
+            #inhead {
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+        }
+
+        @media (min-width:500px) {
+            #inhead {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        #search {
+            height: 35px;
+            width: 200px;
+            outline: none;
+            background-color: transparent;
+            border: 2px solid #1e2248;
+            border-radius: 20px;
+            font-size: 16px;
+            padding-left: 10px;
+            color: white;
+            text-transform: capitalize;
+        }
+
+        #search:focus {
+            background-color: #1e2248;
+        }
+
+        #inhead {
+            width: 90%;
+            /* background-color: aliceblue; */
+            display: flex;
+        }
+
+        main {
+            min-height: 100vh;
+            width: 100%;
+            background-color: #6f73a5;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* align-items: center; */
+            gap: 25px;
+        }
+
+        .element {
+            height: 500px;
+            width: 280px;
+            background-color: #373b69;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .images {
+            height: 80%;
+            width: 100%;
+        }
+
+        .description {
+            /* background-color: aliceblue; */
+            height: 17%;
+            width: 90%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .name {
+            font-size: 20px;
+            color: white;
+            font-weight: bolder;
+        }
+
+        .rate {
+            height: 25px;
+            min-width: 25px;
+            background-color: #6f73a5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4px;
+            border-radius: 5px;
+            color: rgb(255, 187, 0);
+            font-weight: bolder;
+        }
+
+        .overview {
+            min-height: 1%;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <header>
+            <div id="inhead">
+                <div id="name">Moviesflix</div>
+                <form action="" id="form">
+                    <input type="text" id="search" placeholder="search">
+                </form>
+            </div>
+        </header>
+        <main id="main">
+            <!-- <div class="element">
+                <img class="images" src="image1.png" alt="">
+                <div class="description">
+                    <div class="name">Kraven the hunter</div>
+                    <div class="rate">6.625</div>
+                </div>
+                <p class="overview">a?</p>
+            </div> -->
+        </main>
+    </div>
+    <script>
+        const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1';
+        const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
+        const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query="';
+
+        let search = document.getElementById('search');
+        let form = document.getElementById('form');
+        const inmain = document.querySelector('main');
+        // let imgg = document.getElementsByName('img');
+        // imgg.addEventListener("onmouseenter", () => {
+        //     let view = document.getElementsByTagName("p");
+        //     view.style.height='70px';
+        // });
+        getMovies(API_URL);
+
+        async function getMovies(url) {
+            let r1 = await fetch(url);
+            let data = await r1.json();
+            console.log(data.results);
+            showMovies(data.results);
+        }
+
+
+        function showMovies(data) {
+            inmain.innerHTML="";
+            data.forEach(every => {
+                let el = document.createElement('div');
+                let img = document.createElement('img');
+                let desc = document.createElement('div');
+                let n = document.createElement('div');
+                let r = document.createElement('div');
+                el.className = "element";
+                img.className = "images";
+                desc.className = "description";
+                n.className = "name";
+                r.className = "rate";
+
+                inmain.appendChild(el);
+                el.appendChild(img);
+                el.appendChild(desc);
+                desc.appendChild(n);
+                desc.appendChild(r);
+
+                n.innerText = every.title;
+                r.innerText = every.vote_average;
+                img.src = `${IMG_PATH}` + every.poster_path;
+                img.alt = every.title;
+
+            });
+        }
+        form.addEventListener("submit", (i) => {
+            i.preventDefault();
+            let term = search.value;
+            if (term !== "") {
+                async function searchApi(term) {
+                    let res = await fetch(SEARCH_API + term);
+                    let data = await res.json();
+                    // console.log(data);
+                    showMovies(data.results);
+                }
+                searchApi(term);
+            }
+            else {
+                location.reload();
+            }
+        })
+
+    </script>
+</body>
+
+</html>
