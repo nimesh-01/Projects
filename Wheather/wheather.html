@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        main {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #inmain {
+            height: 600px;
+            width: 400px;
+
+            background: linear-gradient(135deg,#00feba,#5b548a);
+            color: #fff;;
+            border-radius: 50px;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flex:nth-child(2) {
+            height: 25%;
+        }
+
+        .flex:nth-child(3) {
+            height: 25%;
+        }
+
+        .flex:nth-child(4) {
+            height: 15%;
+        }
+
+        .flex:nth-child(5) {
+            height: 15%;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .flex input {
+            height: 40px;
+            width: 250px;
+            border-radius: 40px;
+            border: none;
+            padding-left: 10px;
+            font-size: 18px;
+            outline: none;
+            text-transform: capitalize;
+        }
+
+        #img1 {
+            height: 40px;
+            width: 40px;
+            border-radius: 40px;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0px 0px 10px white;
+        }
+        #img1:active{
+            background-color: transparent;
+        }
+        #img1 img {
+            height: 80%;
+            width: 80%;
+        }
+
+        .flex:nth-child(1) {
+            height: 20%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        #img2 {
+            height: 100%;
+        }
+
+        #deg {
+            font-size: 50px;
+            color: white;
+        }
+
+        #cn {
+            font-size: 40px;
+            color: white;
+            letter-spacing: 2px;
+            text-transform: capitalize;
+        }
+
+        .set {
+            height: 40%;
+            width: 40%;
+            font-size: 20px;
+            color: white;
+        }
+
+        .set div:first-child {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            gap: 5px;
+        }
+        .set div:first-child img{
+            height: 50%;
+            width: 40%;
+        }
+
+
+        .set div:last-child {
+            display: flex;
+            justify-content: center;
+            height: 50px;
+            align-items: center;
+        }
+
+        .set img {
+            height: 70%;
+        }
+
+        #error {
+            font-size: 20px;
+            color: white;
+            font-weight: bolder;
+            text-align: center;
+            display: none;
+            text-shadow: 2px 2px 1px black ;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div id="inmain">
+            <div class="flex">
+                <input type="text" id="cnn" placeholder="Enter city name">
+                <div id="img1" onclick="func()"> <img src="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-glyph-1/32/-_Magnifier-Search-Zoom--256.png" alt="search"></div>
+            </div>
+            <div id="error">
+            </div>
+            <div class="flex"> <img id="img2" src="https://cdn4.iconfinder.com/data/icons/the-weather-is-nice-today/64/weather_3-512.png" alt=""></div>
+            <div class="flex">
+                <div id="deg">22&deg;c</div>
+            </div>
+            <div class="flex">
+                <div id="cn">Bengaluru</div>
+
+            </div>
+            <div class="flex">
+                <div class="set">
+                    <div><img src=" https://cdn0.iconfinder.com/data/icons/weather-168/24/weather_forcast_humidity_precipitation-256.png " alt="">
+                        <div id="humi">53&percnt;</div>
+                    </div>
+                    <div>Humidity</div>
+                </div>
+                <div class="set">
+                    <div><img src="https://cdn-icons-png.flaticon.com/512/17993/17993161.png" alt="">
+                        <div id="wind">5.66 km/h;</div>
+                    </div>
+                    <div>Wind Speed</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function func() {
+            let cn = document.getElementById('cnn').value;
+            const key = "8c0001c651e162509987319d726669cc";
+            const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric";
+
+            async function finddegree() {
+                const response = await fetch(apiurl + `&appid=${key}` + `&q=${cn}`);
+                var data = await response.json();
+                console.log(data);
+                let er = document.getElementById('error');
+                if (cn == "") {
+                    er.style.display = "block";
+                    er.innerHTML = "! Please Enter city !";
+                    return 0;
+                } else
+                    if (data.message == "city not found") {
+                        er.style.display = "block";
+                        er.innerHTML = "! City not found !";
+                    return 0;
+
+                    }
+                    else {
+                        er.style.display = "none";  
+                        document.getElementById('cn').innerHTML = data.name;
+                        document.getElementById('deg').innerHTML = Math.round(data.main.temp) + "&degc";
+                        document.getElementById('humi').innerHTML = data.main.humidity + "%";
+                        document.getElementById('wind').innerHTML = data.wind.speed + " kmph";
+                        let img = document.getElementById('img2');
+                        if (data.weather[0].main == "Clouds") {
+                            img.src = "https://cdn0.iconfinder.com/data/icons/tuts/256/weather.png";
+                        }
+                        else if (data.weather[0].main == "Clear") {
+                            img.src = "https://cdn4.iconfinder.com/data/icons/the-weather-is-nice-today/64/weather_3-512.png";
+                        }
+                        else if (data.weather[0].main == "Drizzle") {
+                            img.src = "https://cdn4.iconfinder.com/data/icons/the-weather-is-nice-today/64/weather_17-512.png";
+                        }
+                        else if (data.weather[0].main == "Mist") {
+                            img.src = "https://cdn4.iconfinder.com/data/icons/the-weather-is-nice-today/64/weather_2-512.png";
+                        }
+                        else if (data.weather[0].main == "Snow") {
+                            img.src = "https://cdn3.iconfinder.com/data/icons/meteocons/512/snow-2-512.png";
+                        }
+                        else if (data.weather[0].main == "Rain") {
+                            img.src = "https://cdn3.iconfinder.com/data/icons/spring-2-1/30/Rain-512.png";
+                        }
+                    }
+            }
+            finddegree();
+        }
+    </script>
+</body>
+
+</html>
