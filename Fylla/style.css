@@ -1,0 +1,800 @@
+:root {
+  --clr-dark: #2a2a2a; /* Dark color for text in light mode, background in dark mode */
+  --clr-light: #ffffff; /* Light color for background in light mode, text in dark mode */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  touch-action: manipulation;
+  /* Improves touch response */
+  -webkit-tap-highlight-color: transparent;
+  /* Removes blue highlight on tap */
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  padding: 1rem;
+  background-color: rgb(250, 250, 246);
+}
+
+.line {
+  background-color: var(--clr-dark);
+  height: 1px;
+  width: 100%;
+  margin: 1rem 0rem;
+}
+
+button {
+  border: none;
+}
+
+main {
+  padding: 0rem 1rem 1rem 1rem;
+  padding-top: 2rem;
+  width: 100%;
+  border: 1px solid var(--clr-dark);
+}
+
+#line {
+  background-color: var(--clr-dark);
+  height: 1px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav #topnav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+nav #topnav p {
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+nav #topnav svg {
+  height: 50px;
+  width: 50px;
+}
+nav #botnav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+nav #botnav #serves {
+  display: flex;
+  gap: 2rem;
+}
+nav #botnav #serves .atag {
+  color: black;
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.1s linear;
+}
+nav #botnav #serves a:hover {
+  text-shadow: 0px 0px 2px var(--clr-dark);
+}
+nav #botnav button {
+  height: 35px;
+  width: 140px;
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+nav #botnav button:hover {
+  text-shadow: 0px 0px 10px var(--clr-light);
+}
+nav #botnav #func {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+nav #botnav #func .straight {
+  height: 40px;
+  width: 1px;
+  background-color: var(--clr-dark);
+}
+nav #botnav #func #infunc {
+  display: flex;
+  gap: 0.6rem;
+}
+nav #botnav #func #infunc .circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: 1px solid var(--clr-dark);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+nav #botnav #func #infunc .circle:hover {
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+}
+nav #botnav #func #mode {
+  height: 30px;
+  width: 60px;
+  border: 1px solid var(--clr-dark);
+  border-radius: 2rem;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+nav #botnav #func #mode svg {
+  height: 15px;
+  width: 15px;
+  fill: evenodd;
+}
+nav #menu {
+  display: none;
+}
+nav #menu svg {
+  height: 40px;
+  width: 40px;
+}
+
+@media (min-width: 800px) and (max-width: 1200px) {
+  nav #botnav #serves {
+    display: none;
+  }
+  nav #botnav #menu {
+    display: block;
+  }
+  nav #botnav #func {
+    flex-direction: row-reverse;
+  }
+}
+@media (max-width: 800px) {
+  nav #botnav button {
+    display: none;
+  }
+  nav #botnav #serves {
+    display: none;
+  }
+  nav #botnav #menu {
+    display: block;
+  }
+  nav #botnav #func {
+    flex-direction: row-reverse;
+  }
+  nav #botnav #func #infunc {
+    display: none;
+  }
+  nav #botnav #func .straight {
+    display: none;
+  }
+  #sec3 #down .flexv {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+#sec1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+#sec1 .line {
+  margin: 2rem 0rem 1rem 0rem;
+}
+#sec1 p {
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+#sec1 h1 {
+  width: 70%;
+  font-weight: 400;
+  font-size: 4rem;
+  line-height: 1;
+}
+#sec1 img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 1rem;
+}
+
+#sec2 {
+  margin: 2rem 0rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+#sec2 #top {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+#sec2 #top p {
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+#sec2 #top h1 {
+  font-size: 3.2rem;
+  font-weight: 500;
+  line-height: 1;
+}
+#sec2 #top button {
+  height: 40px;
+  width: 180px;
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  transition: all 0.5s ease-in;
+  cursor: pointer;
+}
+#sec2 #top button:hover {
+  transform: scale(0.8) rotate(720deg);
+}
+#sec2 #bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+#sec2 #bottom .elem {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#sec2 #bottom .elem svg {
+  width: 4rem;
+  aspect-ratio: 1/1;
+}
+#sec2 #bottom .elem h1 {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+#sec2 #bottom .elem p {
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+#sec3 {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+#sec3 #up {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#sec3 #up h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+#sec3 #up p {
+  font-size: 1.4rem;
+}
+#sec3 #down {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#sec3 #down .flexv .elements {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+#sec3 #down .flexv .elements video {
+  width: 100%;
+  border-radius: 20px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#sec3 #down .flexv .elements h2 {
+  font-weight: 400;
+  text-transform: capitalize;
+}
+#sec3 #down .flexv .elements h3 {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+#sec4 {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+#sec4 #t {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+#sec4 #t svg {
+  width: 4rem;
+  aspect-ratio: 1/1;
+}
+#sec4 #t div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#sec4 #t div p {
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+#sec4 #t div h1 {
+  width: 100%;
+  font-weight: 500;
+  font-size: 3rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+#sec4 #b {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+#sec4 #b p {
+  font-size: 1.2rem;
+}
+#sec4 #b button {
+  height: 40px;
+  width: 150px;
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  transition: all 0.5s ease-in;
+  cursor: pointer;
+}
+#sec4 #b button:hover {
+  transform: scale(0.8) rotate(720deg);
+}
+
+#sec5 {
+  padding: 30px 5px;
+}
+#sec5 #topa {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+#sec5 #topa #intopa {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#sec5 #topa #intopa #intopa1 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+#sec5 #topa #intopa #intopa1 p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+#sec5 #topa #intopa #intopa1 svg {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+}
+#sec5 #topa #intopa #intopa2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+#sec5 #topa #intopa #intopa2 p {
+  font-size: 1rem;
+}
+#sec5 #topa #intopab {
+  display: flex;
+  gap: 0.6rem;
+}
+#sec5 #topa #intopab .circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: 1px solid var(--clr-dark);
+  text-transform: uppercase;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+#sec5 #topa #intopab .circle:hover {
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+}
+
+#bottoma {
+  text-transform: uppercase;
+}
+#bottoma .elems {
+  padding: 20px 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+#bottoma .elems h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+#bottoma .elems h6 {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+#bottoma .elems h6:hover {
+  font-weight: 600;
+}
+#bottoma .elems button {
+  height: 40px;
+  width: 200px;
+  padding: 0px 20px;
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+#bottoma .elems button:hover {
+  transform: translate(30px);
+}
+
+#sec6 {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 5px;
+  gap: 5px;
+  align-items: center;
+  text-transform: uppercase;
+}
+#sec6 p {
+  font-size: 1rem;
+  word-spacing: 2px;
+  letter-spacing: 1px;
+}
+#sec6 p span {
+  border-bottom: 1px solid var(--clr-dark);
+  cursor: pointer;
+}
+#sec6 p:last-child {
+  cursor: pointer;
+  transition: border-bottom 2s 1s linear;
+}
+#sec6 p:last-child:hover {
+  border-bottom: 2px solid var(--clr-dark);
+  border-bottom-width: 10px;
+}
+
+@media (min-width: 700px) and (max-width: 1020px) {
+  main {
+    padding: 1.5rem;
+  }
+  main #sec1 h1 {
+    font-size: 4rem;
+    width: 50%;
+    font-weight: 500;
+  }
+  main #sec1 p {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+}
+@media (min-width: 800px) and (max-width: 1020px) {
+  main {
+    padding: 2rem;
+  }
+}
+@media (min-width: 1020px) {
+  main {
+    padding: 2rem 3rem 1rem 3rem;
+  }
+  main #sec1 h1 {
+    font-size: 6rem;
+    width: 50%;
+    font-weight: 500;
+  }
+  #sec2 {
+    display: flex;
+    flex-direction: row;
+    gap: 2.5rem;
+  }
+  #sec2 #top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 65%;
+  }
+  #sec2 #top div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  #sec2 #top p {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  #sec2 #top h1 {
+    font-size: 5rem;
+    font-weight: 400;
+    line-height: 1;
+    width: 95%;
+  }
+  #sec2 #top button {
+    height: 40px;
+    width: 180px;
+    background-color: var(--clr-dark);
+    color: var(--clr-light);
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+  #sec2 .line {
+    background-color: var(--clr-dark);
+    height: 1px;
+    width: 100%;
+  }
+  #sec2 #bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 30%;
+  }
+  #sec2 #bottom .elem {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  #sec2 #bottom .elem svg {
+    width: 4rem;
+    aspect-ratio: 1/1;
+  }
+  #sec2 #bottom .elem h1 {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+  }
+  #sec2 #bottom .elem p {
+    line-height: 1.5;
+  }
+}
+@media (min-width: 800px) and (max-width: 1200px) {
+  #sec3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  #sec3 #up {
+    width: 30%;
+    gap: 1rem;
+    height: 50%;
+    position: sticky;
+    top: 20px;
+  }
+  #sec3 #up h1 {
+    font-size: 4rem;
+  }
+  #sec3 #up p {
+    font-size: 1.5rem;
+  }
+  #sec3 #line {
+    display: none;
+  }
+  #sec3 .flexv {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  #sec3 #down {
+    width: 55%;
+  }
+  #sec3 #down .elements video {
+    height: 300px;
+  }
+  #sec5 {
+    display: flex;
+  }
+  #sec5 #topa {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  #sec5 #topa .line {
+    display: none;
+  }
+  #sec5 #topa #intopa {
+    padding: 20px 0px;
+  }
+  #sec5 #bottoma {
+    width: 60%;
+  }
+  #sec5 #bottoma .elems {
+    padding: 30px 5px;
+  }
+}
+@media (min-width: 1200px) {
+  #sec3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  #sec3 #up {
+    width: 30%;
+    gap: 1rem;
+    height: 50%;
+    position: sticky;
+    top: 20px;
+  }
+  #sec3 #up h1 {
+    font-size: 4rem;
+    line-height: 1;
+  }
+  #sec3 #up p {
+    font-size: 1.5rem;
+  }
+  #sec3 #line {
+    display: none;
+  }
+  #sec3 .flexv {
+    display: flex;
+    gap: 20px;
+    gap: 1rem;
+  }
+  #sec3 #down {
+    width: 65%;
+  }
+  #sec3 #down .elements video {
+    height: 280px;
+  }
+  #sec4 {
+    height: 500px;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  #sec4 #t {
+    width: 50%;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    gap: 2rem;
+  }
+  #sec4 #t svg {
+    width: 6rem;
+    aspect-ratio: 1/1;
+  }
+  #sec4 #t div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  #sec4 #t div h1 {
+    width: 100%;
+    font-weight: 500;
+    font-size: 5rem;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  #sec4 #b {
+    width: 30%;
+    justify-content: space-around;
+    gap: 2rem;
+  }
+  #sec4 #b p {
+    font-size: 2rem;
+  }
+  #sec5 {
+    display: flex;
+  }
+  #sec5 #topa {
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+  }
+  #sec5 #topa .line {
+    display: none;
+  }
+  #sec5 #topa #intopa {
+    padding: 20px 0px;
+  }
+  #sec5 #bottoma {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    justify-content: space-evenly;
+  }
+  #sec5 #bottoma .line {
+    display: none;
+  }
+  #sec5 #bottoma .elems {
+    padding: 30px 5px;
+  }
+}
+@media (min-width: 800px) {
+  #sec6 {
+    display: flex;
+    flex-direction: row;
+    padding: 20px 5px;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #sec6 p {
+    font-size: 1rem;
+    word-spacing: 2px;
+    letter-spacing: 1px;
+  }
+  #sec6 p span {
+    border-bottom: 1px solid var(--clr-dark);
+  }
+}
+@media (min-width: 2000px) {
+  main {
+    width: 2000px;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}/*# sourceMappingURL=style.css.map */
